@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - coinmarketcap</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Animation styles */
+        .animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-in-out;
+        }
+
+        .animate.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Delay for a staggered effect */
+        .delay-1 { transition-delay: 0.2s; }
+        .delay-2 { transition-delay: 0.4s; }
+        .delay-3 { transition-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="admin-dashboard.html">SWINGIFY ADMIN DASHBOARD</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="logout.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="animate delay-1">Admin Dashboard</h1>
+        
+        <h2 class="animate delay-2">User Deposits</h2>
+        <table class="table animate delay-3">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Amount</th>
+                    <th>Plan</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="depositRequests">
+                <!-- Dynamic content will be added here -->
+            </tbody>
+        </table>
+
+        <h2 class="animate delay-2">User Withdrawals</h2>
+        <table class="table animate delay-3">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Amount</th>
+                    <th>Wallet Address</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="withdrawRequests">
+                <!-- Dynamic content will be added here -->
+            </tbody>
+        </table>
+
+        <h2 class="animate delay-2">All Users</h2>
+        <table class="table animate delay-3">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody id="allUsers">
+                <!-- Dynamic content will be added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container animate delay-2">
+        <h2>Proofs of Payment</h2>
+        <table class="table animate delay-3">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Amount</th>
+                    <th>Proof</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody id="proofsOfPayment">
+                <!-- Dynamic content will be added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container animate delay-2">
+        <h2>All Users with Profits</h2>
+        <table class="table animate delay-3">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Profits</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="userProfits">
+                <!-- Dynamic content will be added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observer to detect elements coming into view
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target); // Remove observer once animation is triggered
+                    }
+                });
+            });
+
+            // Observe all elements with the class 'animate'
+            document.querySelectorAll('.animate').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
