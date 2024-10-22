@@ -182,82 +182,6 @@ app.post('/api/users/register', async (req, res) => {
 });
 
 
-
-// User Registration
-// app.post('/api/users/register', async (req, res) => {
-//     const { name, email, password, referralCode } = req.body;
-
-//     if (!name || !email || !password) {
-//         return res.status(400).json({ message: 'Name, email, and password are required.' });
-//     }
-
-//     const hashedPassword = await bcrypt.hash(password, 10);
-//     try {
-//         const user = new User({ email, password: hashedPassword, name });
-
-//         // If a referral code is provided, find the referrer and update their referredUsers
-//         if (referralCode) {
-//             const referrer = await User.findOne({ email: referralCode });
-//             if (referrer) {
-//                 referrer.referredUsers.push(user._id);
-//                 referrer.referralCount += 1; // Increase referral count
-//                 await referrer.save();
-//                 user.referredBy = referrer.email; // Optionally store who referred them
-//             }
-//         }
-
-//         await user.save();
-//         res.status(201).json({ message: 'User registered successfully' });
-//     } catch (error) {
-//         res.status(400).json({ message: error.message });
-//     }
-// });
-
-
-
-// User Registration
-// app.post('/api/users/register', async (req, res) => {
-//     const { name, email, password, referralCode } = req.body;
-
-//     if (!name || !email || !password) {
-//         return res.status(400).json({ message: 'Name, email, and password are required.' });
-//     }
-
-//     const hashedPassword = await bcrypt.hash(password, 10);
-//     try {
-//         // Generate referral link first
-//         const referralLink = `http://localhost:5000/register?referralCode=${user._id}`;
-
-//         const user = new User({
-//             email,
-//             password: hashedPassword,
-//             name,
-//             referralLink // Store the generated referral link in the user document
-//         });
-
-//         // If a referral code is provided, find the referrer and update their referredUsers
-//         if (referralCode) {
-//             const referrer = await User.findOne({ email: referralCode });
-//             if (referrer) {
-//                 referrer.referredUsers.push(user._id);
-//                 referrer.referralCount += 1; // Increase referral count
-//                 await referrer.save();
-//                 user.referredBy = referrer.email; // Optionally store who referred them
-//             }
-//         }
-
-//         await user.save();
-
-//         res.status(201).json({ message: 'User registered successfully', referralLink });
-//     } catch (error) {
-//         res.status(400).json({ message: error.message });
-//     }
-// });
-
-
-
-
-
 // User Login
 app.post('/api/users/login', async (req, res) => {
     const { email, password } = req.body;
@@ -737,6 +661,6 @@ app.post('/api/admin/users/profit/:userId',  async (req, res) => {
 
 
 // Start server
-server.listen(8000, () => {
-    console.log('Server is running on port 8000');
+server.listen(5000, () => {
+    console.log('Server is running on port 5000');
 });
